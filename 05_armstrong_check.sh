@@ -1,17 +1,32 @@
-echo "enter any number "
-read n
-m=$n
+read -p "Enter the Number: " n
 sum=0
-while [ $m -gt 0 ]
+c=0;
+d=0
+temp=1
+t=1
+for ((i=$n;i>0;i=i/10))
 do
-        y=`expr $m % 10`
-        x=`expr $y \* $y \* $y`
-        sum=`expr $sum + $x`
-        m=`expr $m / 10`
+   d=(`expr $i % 10`)
+   let "c+=1"
+done
+
+for ((i=$n;i>0;i=i/10))
+do
+   
+   d=(`expr $i % 10`)
+   
+   for ((j=0; j<$c;j++))
+   do 
+       temp=$(($temp * $d))
+       
+   done
+   
+    sum=$(($sum+$temp))
+    temp=$((1))
 done
 if [ $sum -eq $n ]
 then
-        echo the given number is armstrong
+    echo Armstrong Number
 else
-        echo the given number is not armstrong
+   echo Not Armstrong Number    
 fi
